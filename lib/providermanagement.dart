@@ -1,13 +1,10 @@
-import 'provider_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_mysql/providercounter.dart';
 
-class ProviderManagement extends StatelessWidget {    
-  ProviderCounter _providerCounter = ProviderCounter();
-  ProviderManagement({super.key});
-
+class ProviderManagement extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) {
         print("1. Provider widget build");
@@ -28,18 +25,17 @@ class ProviderManagement extends StatelessWidget {
                 builder: (context, providerCounter, child) {
                   print("2. Consumer dijalankan");
                   return Text(
-                  '${providerCounter.counter}',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                    '${providerCounter.counter}',
+                    style: Theme.of(context).textTheme.headlineMedium,
                   );
                 },
               ),
               Consumer<ProviderCounter>(
                 builder: (context, providerCounter, child) => ElevatedButton(
-                  onPressed: () {
-                    providerCounter.increment();
-                  }, 
-                  child: Text("Tambah")
-                ),              
+                    onPressed: () {
+                      providerCounter.increment();
+                    },
+                    child: Text("Tambah")),
               )
             ],
           ),
